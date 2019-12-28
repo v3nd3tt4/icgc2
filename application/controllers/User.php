@@ -337,9 +337,11 @@ class User extends CI_Controller {
 
         $msg = '<a href="'.base_url().'admin/detail_pendaftar/'.$cek_status->row()->id_pendaftar.'">'.$cek_status->row()->nama_pendaftar.'</a> telah mengupload paper yang direvisi';
 
-        $kirim_email = $this->rest->send_request('http://sso.itera.ac.id/mails', 'POST', array('to' => 'seaan2018@itera.ac.id', 'subject' => 'Paper telah direvisi', 'message' => $msg));
+        // $kirim_email = $this->rest->send_request('http://sso.itera.ac.id/mails', 'POST', array('to' => 'seaan2018@itera.ac.id', 'subject' => 'Paper telah direvisi', 'message' => $msg));
 
-        if($kirim_email == '0'){
+        $this->send('icgc.abkinpdlampung@gmail.com', $msg, 'Paper telah direvisi');
+
+        if($kirim_email === false){
             $return = array(
                 'status' => 'failed',
                 'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a><i class="fa fa-check" aria-hidden="true"></i>system error occurred ! !</div>'
@@ -414,5 +416,31 @@ class User extends CI_Controller {
     public function generateword(){
         
     }
+
+    public function send($email_to, $message, $subject){  
+        $ci = get_instance();
+        $ci->load->library('email');
+        $config['protocol'] = "smtp";
+        $config['smtp_host'] = "ssl://smtp.gmail.com";
+        $config['smtp_port'] = "465";
+        $config['smtp_user'] = "icgc.abkinpdlampung@gmail.com";
+        $config['smtp_pass'] = "icgc123456";
+        $config['charset'] = "utf-8";
+        $config['mailtype'] = "html";
+        $config['newline'] = "\r\n";
+        $ci->email->initialize($config);
+        $ci->email->from('icgc.abkinpdlampung@gmail.com', 'ICGC');
+        // $list = array('pilopaokta@gmail.com');
+        $ci->email->to($email_to);
+        $ci->email->subject($subject);
+        $ci->email->message($message);
+        if ($this->email->send()) {
+            // echo 'Email sent.';
+            return true;
+        } else {
+            // show_error($this->email->print_debugger());
+            return false;
+        }
+    }  
 
 }

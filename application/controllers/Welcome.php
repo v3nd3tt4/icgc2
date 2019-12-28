@@ -100,9 +100,9 @@ class Welcome extends CI_Controller {
 			$simpan = $this->Model->simpan_data($data, 'tb_pendaftar');
 			$simpan_user = $this->Model->simpan_data($data_user, 'tb_user');
 			if($simpan){
-				$message = 'This is your SEAAN account & please complete your profile<br/>Username: '.$this->input->post('email', true).'<br/>password: '.$this->input->post('tgl_lahir', true).'<br/>login <a href="'.base_url().'">here</a>';
-
-				$this->rest->send_request('http://sso.itera.ac.id/mails', 'POST', array('to' => $this->input->post('email', true), 'subject' => 'Username dan Password', 'message' => $message));
+				$message = 'Thanks for registration, This is your ICGC account & please complete your profile<br/>Username: '.$this->input->post('email', true).'<br/>password: '.$this->input->post('tgl_lahir', true).'<br/>login <a href="'.base_url().'">here</a>';
+				$this->send($this->input->post('email', true), $message, 'ICGC account');
+				// $this->rest->send_request('http://sso.itera.ac.id/mails', 'POST', array('to' => $this->input->post('email', true), 'subject' => 'Username dan Password', 'message' => $message));
 				$return = array(
 					'status' => 'success',
 					'text' => '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a><i class="fa fa-check" aria-hidden="true"></i>success, please check your email  !</div>'
@@ -175,4 +175,85 @@ class Welcome extends CI_Controller {
 		);
 		$this->load->view('template/wrapper', $data);
 	}
+
+	public function send_mail(){
+		// Konfigurasi email
+        // $config = [
+        //     'mailtype'  => 'html',
+        //     'charset'   => 'utf-8',
+        //     'protocol'  => 'smtp',
+        //     'smtp_host' => 'smtp.gmail.com',
+        //     'smtp_user' => 'icgc.abkinpdlampung@gmail.com',  // Email gmail
+        //     'smtp_pass'   => 'icgc123456',  // Password gmail
+        //     'smtp_crypto' => 'ssl',
+        //     'smtp_port'   => 465,
+        //     'crlf'    => "\r\n",
+        //     'newline' => "\r\n"
+        // ];
+
+        // Load library email dan konfigurasinya
+        // $this->load->library('email', $config);
+
+
+		$config = Array(
+		    'protocol' => 'smtp',
+		    'smtp_host' => 'ssl://smtp.googlemail.com',
+		    'smtp_port' => 465,
+		    'smtp_user' => 'pilopaokta@gmail.com',
+		    'smtp_pass' => '1011080037',
+		    'mailtype'  => 'html', 
+		    'charset'   => 'iso-8859-1'
+		);
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+
+        // Email dan nama pengirim
+        $this->email->from('pilopaokta@gmail.com', 'ICGC');
+
+        // Email penerima
+        $this->email->to('icgc.abkinpdlampung@gmail.com'); // Ganti dengan email tujuan
+
+        // Lampiran email, isi dengan url/path file
+        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+
+        // Subject email
+        $this->email->subject('Kirim Email dengan SMTP Gmail CodeIgniter | MasRud.com');
+
+        // Isi email
+        $this->email->message("Ini adalah contoh email yang dikirim menggunakan SMTP Gmail pada CodeIgniter.<br><br> Klik <strong><a href='https://masrud.com/post/kirim-email-dengan-smtp-gmail' target='_blank' rel='noopener'>disini</a></strong> untuk melihat tutorialnya.");
+
+        // Tampilkan pesan sukses atau error
+        var_dump($this->email->send());exit();
+        if ($this->email->send()) {
+            echo 'Sukses! email berhasil dikirim.';
+        } else {
+            echo 'Error! email tidak dapat dikirim.';
+        }
+	}
+
+	 public function send($email_to, $message, $subject){  
+   		$ci = get_instance();
+        $ci->load->library('email');
+        $config['protocol'] = "smtp";
+        $config['smtp_host'] = "ssl://smtp.gmail.com";
+        $config['smtp_port'] = "465";
+        $config['smtp_user'] = "icgc.abkinpdlampung@gmail.com";
+        $config['smtp_pass'] = "icgc123456";
+        $config['charset'] = "utf-8";
+        $config['mailtype'] = "html";
+        $config['newline'] = "\r\n";
+        $ci->email->initialize($config);
+        $ci->email->from('icgc.abkinpdlampung@gmail.com', 'ICGC');
+        // $list = array('pilopaokta@gmail.com');
+        $ci->email->to($email_to);
+        $ci->email->subject($subject);
+        $ci->email->message($message);
+        if ($this->email->send()) {
+            // echo 'Email sent.';
+            return true;
+        } else {
+            // show_error($this->email->print_debugger());
+            return false;
+        }
+  	}  
 }
