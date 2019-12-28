@@ -167,4 +167,12 @@ class Welcome extends CI_Controller {
 		);
 		$this->load->view('template/wrapper', $data);
 	}
+
+	public function mp(){
+		$data = array(
+			'page' => 'user/mp',
+			'link' => 'mp',
+		);
+		$this->load->view('template/wrapper', $data);
+	}
 }

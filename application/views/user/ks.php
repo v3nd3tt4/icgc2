@@ -6,7 +6,7 @@
 		</div>
 		<div class="panel-body">
 			<ol>
-				<li>Dr. Alizaman Dumangca Gamon (Director, External Program and Consultant Rc-Al Khwarizmi International College Foundation, Marawi, Philippines)</li>
+				<li>Dr. Melfi M. Caranto (Dean, College of Liberal Arts, Criminology and Education Jose Rizal University)</li>
 				<li>Dr. Norhayati Mohd Noor (Universiti Kebangsaan Malaysia, Faculty of Education)</li>
 				<li>Dr. Supriano, M.Ed.Dirjen GTK Kemendikbud Indonesia</li>
 				<li>Dr. Moh.Farozin, (KetuaUmumPB ABKIN,  Univ Negeri Yogjakarta)</li>
