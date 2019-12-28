@@ -75,7 +75,9 @@
 							<!--<option value="Others">Regular</option>-->
 							<option value="Student">Student</option>
 							<option value="Lecture">Lecture</option>
+							<option value="Teacher">Teacher</option>
 							<option value="Regular">Regular</option>
+							<option value="ABKIN Member">ABKIN Member</option>
 						</select>
 					</div>
 					<div class="form-group">

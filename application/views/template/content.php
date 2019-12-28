@@ -36,7 +36,11 @@
 	<?php if(!$this->session->userdata('is_login')){?>
 	<div class="list-group">
 	  <a href="#" class="list-group-item list-group-item-warning">Menu</a>
-	  <a href="<?=base_url()?>" class="list-group-item <?php if($link=='pendaftaran'){echo'active';}?>"><i class="fa fa-home" aria-hidden="true"></i> Registration</a>    
+	  <a href="<?=base_url()?>" class="list-group-item <?php if($link=='pendaftaran'){echo'active';}?>"><i class="fa fa-home" aria-hidden="true"></i> Registration</a>  
+	  <a href="<?=base_url()?>welcome/ct" class="list-group-item <?php if($link=='ct'){echo'active';}?>"><i class="fa fa-home" aria-hidden="true"></i> Conference Topic</a>
+	  <a href="<?=base_url()?>welcome/sc" class="list-group-item <?php if($link=='sc'){echo'active';}?>"><i class="fa fa-home" aria-hidden="true"></i> Scientific Committee</a>    
+	  <a href="<?=base_url()?>welcome/oc" class="list-group-item <?php if($link=='oc'){echo'active';}?>"><i class="fa fa-home" aria-hidden="true"></i> Organizatoring Committee</a>  
+	  <a href="<?=base_url()?>welcome/ks" class="list-group-item <?php if($link=='ks'){echo'active';}?>"><i class="fa fa-home" aria-hidden="true"></i> Keynote Speaker</a>    
 	  <!-- <a href="<?=base_url()?>welcome/procedure" class="list-group-item <?php if($link=='procedure'){echo'active';}?>"><i class="fa fa-file-text-o" aria-hidden="true"></i> Registration Guidance</a> -->      
 	</div>
 	<?php }else{

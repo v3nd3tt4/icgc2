@@ -127,4 +127,44 @@ class Welcome extends CI_Controller {
 		);
 		$this->load->view('template/wrapper', $data);
 	}
+
+	public function counselee(){
+		$data = array(
+			'page' => 'user/counselee',
+			'link' => 'counselee',
+		);
+		$this->load->view('template/wrapper', $data);
+	}
+
+	public function ct(){
+		$data = array(
+			'page' => 'user/ct',
+			'link' => 'ct',
+		);
+		$this->load->view('template/wrapper', $data);
+	}
+
+	public function sc(){
+		$data = array(
+			'page' => 'user/sc',
+			'link' => 'sc',
+		);
+		$this->load->view('template/wrapper', $data);
+	}
+
+	public function oc(){
+		$data = array(
+			'page' => 'user/oc',
+			'link' => 'oc',
+		);
+		$this->load->view('template/wrapper', $data);
+	}
+
+	public function ks(){
+		$data = array(
+			'page' => 'user/ks',
+			'link' => 'ks',
+		);
+		$this->load->view('template/wrapper', $data);
+	}
 }

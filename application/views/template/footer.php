@@ -7,7 +7,7 @@
 <div class="container footer">
     <div class="row">
         <div class="col-md-12">
-            <center>Copyright &copy; 2019 Andi Thahir</center>
+            <center>Powered by  <a href="<?=base_url()?>welcome/counselee">counselee</a> &copy; 2019</center>
         </div>
     </div>
     <!-- <div class="row">
