@@ -6,7 +6,7 @@
 		</div>
 		<div class="panel-body">
 			<ol>
-				<li>Prof. Dr. Tulus Suryanto, General Chair</li>
+				<li>Dr. Andi Thahir,  M. A., Ed. D, General Chair</li>
 				<li>Okta Pilopa, M.T.I, Program Chair</li>
 				<ol>
 					<li>Ningrum, Member </li>
