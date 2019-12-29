@@ -6,11 +6,11 @@
 		</div>
 		<div class="panel-body">
 			<ol>
-				<li>Dr. Andi Thahir,  M. A., Ed. D, General Chair</li>
+				<li>Assoc.Prof.Andi Thahir, S.Psi.,M.A.,Ed.D</li>
 				<li>Okta Pilopa, M.T.I, Program Chair</li>
 				<ol>
-					<li>Ningrum, Member </li>
-					<li>Wafi, Member </li>
+					<li>Rahmat Alfian, Member </li>
+					<li>Wafi Hibatullah, Member </li>
 				</ol>
 				
 				<li>Rahma Diani, M.Pd, Publications Chair</li>
@@ -23,6 +23,7 @@
 				<li>Anisa Mawarni, M.Pd, Patronage Chair</li>
 					<ol>
 						<li>Citra Abriani Maharani, M.Pd., Kons, Member</li>
+						<li>Mujiati, M.Pd, Member</li>
 					</ol>
 				<li>Dra. Kholina, M.Pd, Treasurer</li>
 			</ol>

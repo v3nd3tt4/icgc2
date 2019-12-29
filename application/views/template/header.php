@@ -38,13 +38,15 @@
       <div class="container">
       <div class="row ">
         
-        <div class="col-md-6">
-          <h3>ICGC</h3>
-          <p><em>"International Conference Guidance Counseling"</em></p>
+        <div class="col-md-2">
+          <!-- <h3>ICGC</h3>
+          <p><em>"International Conference Guidance Counseling"</em></p> -->
+          <img src="<?=base_url()?>assets/logoicgc.png" width="150px">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-10">
             <br>
-            
+            <h3>ICGC</h3>
+            <p><em>"International Conference Guidance Counseling"</em></p> 
             <!-- <form role="search" id="searchform" class="searchform " action="#" method="get">
                 <input type="text" class="text-cari " name="s" placeholder="keyword.." />
                 <button type="submit" class=" button-cari " id="searchsubmit">Cari</button>
