@@ -6,7 +6,7 @@
 		</div>
 		<div class="panel-body">
 			<ol>
-				<li>Assoc.Prof.Andi Thahir, S.Psi.,M.A.,Ed.D</li>
+				<li>Assoc.Prof.Andi Thahir, S.Psi.,M.A.,Ed.D, General Chair</li>
 				<li>Okta Pilopa, M.T.I, Program Chair</li>
 				<ol>
 					<li>Rahmat Alfian, Member </li>
