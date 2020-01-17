@@ -438,6 +438,7 @@ class User extends CI_Controller {
             // echo 'Email sent.';
             return true;
         } else {
+            
             // show_error($this->email->print_debugger());
             return false;
         }
