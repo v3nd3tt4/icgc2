@@ -85,7 +85,7 @@ class Admin extends CI_Controller {
 		        $this->upload->initialize($config);
 
 		        if(!$this->upload->do_upload('file_direvisi')){
-		            $msg = array('status' => 'failed', 'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>'.$this->upload->display_errors().'</div>' );
+		            $msg = array('status' => 'failed', 'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Your file is not PDF</div>' );
 		            echo json_encode($msg);
 		            exit();
 		        }else{
@@ -110,14 +110,14 @@ class Admin extends CI_Controller {
         // $kirim_email = $this->rest->send_request('http://sso.itera.ac.id/mails', 'POST', array('to' => $cek_status->row()->email, 'subject' => 'Paper review', 'message' => $msg));
         $this->send($cek_status->row()->email, $msg, 'ICGC Paper review');
 
-        if($kirim_email === false){
-        	$return = array(
-				'status' => 'failed',
-				'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a><i class="fa fa-check" aria-hidden="true"></i> system error occurred !</div>'
-			);
-			echo json_encode($return);
-			exit();
-        }
+   //      if($kirim_email === false){
+   //      	$return = array(
+			// 	'status' => 'failed',
+			// 	'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a><i class="fa fa-check" aria-hidden="true"></i> system error occurred !</div>'
+			// );
+			// echo json_encode($return);
+			// exit();
+   //      }
 
         $simpan = $this->Model->update('id_pendaftar', $this->input->post('id_pendaftar', true), 'tb_pendaftar', $data);
         if($simpan){

@@ -160,7 +160,7 @@ class User extends CI_Controller {
         }
 
         $config ['upload_path'] = './assets/file_upload/foto/';
-        $config ['allowed_types'] = 'DOC|DOCX|doc|docx';
+        $config ['allowed_types'] = 'DOC|DOCX|doc|docx|rtf|RTF|pdf|PDF';
         $config ['max_size'] = '3000';
         $config ['file_name'] = date("YmdHis");
         $this->upload->initialize($config);
@@ -230,7 +230,7 @@ class User extends CI_Controller {
         }
 
         $config ['upload_path'] = './assets/file_upload/foto/';
-        $config ['allowed_types'] = 'DOC|DOCX|doc|docx';
+        $config ['allowed_types'] = 'DOC|DOCX|doc|docx|rtf|RTF|pdf|PDF';
         $config ['max_size'] = '3000';
         $config ['file_name'] = date("YmdHis");
         $this->upload->initialize($config);
@@ -321,7 +321,7 @@ class User extends CI_Controller {
         } 
 
         $config ['upload_path'] = './assets/file_upload/foto/';
-        $config ['allowed_types'] = 'PDF|pdf';
+        $config ['allowed_types'] = 'DOC|DOCX|doc|docx|rtf|RTF|pdf|PDF';
         $config ['max_size'] = '3000';
         $config ['file_name'] = date("YmdHis");
         $this->upload->initialize($config);
