@@ -22,6 +22,18 @@ class User extends CI_Controller {
         );
         $this->load->view('template/wrapper', $data);
     }
+    
+    public function loa($id_pendaftar=''){
+        $datanya = $this->Model->ambil_new(array('email' => $this->session->userdata('username')), 'tb_pendaftar');
+        if($datanya->row()->verifikasi_bukti_bayar == '' || $datanya->row()->verifikasi_bukti_bayar === NULL){
+            echo 'Your payment not valid';
+            exit();
+        }
+        $data = array(
+            'row' => $datanya
+        );
+        $this->load->view('loa', $data);
+    }
 
     public function paper_submission(){
         $query = $this->Model->ambil_new(array('email' => $this->session->userdata('username')), 'tb_pendaftar');

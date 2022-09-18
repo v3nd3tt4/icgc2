@@ -9,6 +9,13 @@
 			$('#modal_verifikasi_pendaftar').modal();
 			$('#id_pendaftar').val(id);
 		});
+		
+		$(document).on('click', '.btn-verif-payment', function(e){
+			e.preventDefault();
+			var id = $(this).attr('id');
+			$('#modal_verifikasi_payment').modal();
+			$('#id_pendaftar').val(id);
+		});
 
 		$(document).on('submit', '#form_upload_verifikasi', function(e){
 			e.preventDefault();
@@ -31,6 +38,31 @@
 				}
 			});
 		});
+		
+		$(document).on('submit', '#form_upload_verifikasi_payment', function(e){
+			e.preventDefault();
+			$('.notif_upload_verifikasi').html('Loading...');
+// 			var data = new FormData(document.getElementById('form_upload_verifikasi_payment'));
+var data = $( "#form_upload_verifikasi_payment" ).serialize();
+			$.ajax({
+				url : '<?=base_url()?>admin/simpan_verifikasi_payment',
+				type: 'POST',
+				dataType: 'JSON',
+				data: data,
+				// processData: false, 
+	   //         contentType: false,
+				success: function(msg){
+					if(msg.status == 'success'){
+						$('.notif_upload_verifikasi').html(msg.msg);
+						location.reload();
+					}else if(msg.status == 'failed'){
+						$('.notif_upload_verifikasi').html(msg.msg);
+					}
+				}
+			});
+		});
+		
+		
 
 		$('.dtTb').dataTable();
 

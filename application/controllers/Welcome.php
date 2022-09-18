@@ -232,7 +232,7 @@ class Welcome extends CI_Controller {
 	}
 
 	 public function send($email_to, $message, $subject){  
-   		$ci = get_instance();
+   		$ci =&  get_instance();
         $ci->load->library('email');
         $config['protocol'] = "smtp";
         $config['smtp_host'] = "ssl://smtp.gmail.com";

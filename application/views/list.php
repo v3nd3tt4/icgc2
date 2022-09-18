@@ -11,6 +11,7 @@
 						<th>No.</th>
 						<th>Name</th>
 						<th>Status</th>
+						<th>Status Pembayaran</th>
 						<th>Type</th>
 						<th>Paper</th>
 						<th>Action</th>
@@ -29,6 +30,15 @@
 							<?=$row->status_verifikasi === NULL ? 'Not Verified' : $row->status_verifikasi?>
 						</td>
 						<td>
+						    <?php
+						        if($row->bukti_bayar === NULL){
+						            echo 'Not Uploaded';
+						        }else{
+						            echo $row->verifikasi_bukti_bayar === NULL ? 'Waiting for verification' : $row->verifikasi_bukti_bayar;
+						        }
+						    ?>
+						</td>
+						<td>
 							<?=$row->id_jenis_peserta?>
 						</td>
 						<td>
@@ -36,6 +46,7 @@
 						</td>
 						<th>
 							<button class="btn btn-warning btn-xs btn-verif" id="<?=$row->id_pendaftar?>">Verified</button>
+							<a href="<?=base_url()?>admin/detail_pendaftar/<?=$row->id_pendaftar?>" class="btn btn-info btn-xs">Lihat</a>
 						</th>
 					</tr>
 					<?php }?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"> 
+  <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/dataTable/media/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/dataTable/media/css/jquery.dataTables.min.css">
-    <!-- <link rel="shortcut icon" href="<?=base_url()?>assets/logo%20itera%20oke.png">     -->
+     <link rel="shortcut icon" href="<?=base_url()?>assets/logoicgc.png">     
     <script src="<?=base_url()?>assets/dataTable/media/js/jquery.dataTables.min.js"></script>    
     <style type="text/css">
       .circular--portrait {

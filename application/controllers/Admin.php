@@ -60,6 +60,7 @@ class Admin extends CI_Controller {
 		// }
 		$this->load->library('Rest','rest');
 		$cek_status = $this->Model->ambil_new(array('id_pendaftar' => $this->input->post('id_pendaftar', true)), 'tb_pendaftar');
+		$file = NULL;
 		if($cek_status->row()->status_verifikasi == 'Accepted' || $cek_status->row()->status_verifikasi == 'Rejected'){
 			$return = array(
 				'status' => 'failed',
@@ -70,32 +71,43 @@ class Admin extends CI_Controller {
 		}
 
 		if($this->input->post('status_nya', true) == 'Major Revision' || $this->input->post('status_nya', true) == 'Minor Revision'){
-			if (!is_uploaded_file($_FILES['file_direvisi']['tmp_name'])) {
-				$return = array(
-					'status' => 'failed',
-					'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a><i class="fa fa-check" aria-hidden="true"></i> File revision must be filled !</div>'
-				);
-				echo json_encode($return);
-				exit();
-			}else{
+		    if (!is_uploaded_file($_FILES['file_direvisi']['tmp_name'])) {
 				$config ['upload_path'] = './assets/file_upload/foto/';
-		        $config ['allowed_types'] = 'PDF|pdf';
-		        $config ['max_size'] = '3000';
-		        $config ['file_name'] = date("YmdHis");
-		        $this->upload->initialize($config);
+ 		        $config ['allowed_types'] = 'PDF|pdf';
+ 		        $config ['max_size'] = '3000';
+ 		        $config ['file_name'] = date("YmdHis");
+ 		        $this->upload->initialize($config);
 
-		        if(!$this->upload->do_upload('file_direvisi')){
-		            $msg = array('status' => 'failed', 'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Your file is not PDF</div>' );
-		            echo json_encode($msg);
-		            exit();
-		        }else{
-		        	$this->upload->do_upload('file_direvisi');
-		        	$upload_data = $this->upload->data();
-		        	$file = $upload_data['file_name'];
-		        }
-			} 
-		}else{
-			$file = NULL;
+ 		        if($this->upload->do_upload('file_direvisi')){
+ 		            $this->upload->do_upload('file_direvisi');
+ 		        	$upload_data = $this->upload->data();
+ 		        	$file = $upload_data['file_name'];
+ 		        }
+			}
+// 			if (!is_uploaded_file($_FILES['file_direvisi']['tmp_name'])) {
+// 				$return = array(
+// 					'status' => 'failed',
+// 					'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a><i class="fa fa-check" aria-hidden="true"></i> File revision must be filled !</div>'
+// 				);
+// 				echo json_encode($return);
+// 				exit();
+// 			}else{
+// 				$config ['upload_path'] = './assets/file_upload/foto/';
+// 		        $config ['allowed_types'] = 'PDF|pdf';
+// 		        $config ['max_size'] = '3000';
+// 		        $config ['file_name'] = date("YmdHis");
+// 		        $this->upload->initialize($config);
+
+// 		        if(!$this->upload->do_upload('file_direvisi')){
+// 		            $msg = array('status' => 'failed', 'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Your file is not PDF</div>' );
+// 		            echo json_encode($msg);
+// 		            exit();
+// 		        }else{
+// 		        	$this->upload->do_upload('file_direvisi');
+// 		        	$upload_data = $this->upload->data();
+// 		        	$file = $upload_data['file_name'];
+// 		        }
+// 			} 
 		}
 
         $data = array(
@@ -108,7 +120,7 @@ class Admin extends CI_Controller {
         $msg = 'We are pleased to inform you that your abstract has been reviewed and '.$this->input->post('status_absnya', true).'. Please, download your letter of acceptance <a href="">here</a>. Please check your SEAAN account <a href="'.base_url().'">here</a>';
 
         // $kirim_email = $this->rest->send_request('http://sso.itera.ac.id/mails', 'POST', array('to' => $cek_status->row()->email, 'subject' => 'Paper review', 'message' => $msg));
-        $this->send($cek_status->row()->email, $msg, 'ICGC Paper review');
+        // $this->send($cek_status->row()->email, $msg, 'ICGC Paper review');
 
    //      if($kirim_email === false){
    //      	$return = array(
@@ -137,9 +149,37 @@ class Admin extends CI_Controller {
 		}
 
 	}
+	
+	public function simpan_verifikasi_payment(){
+	    $id_pendaftar = $this->input->post('id_pendaftar', true);
+	    $status_nya = $this->input->post('status_nya', true);
+	    
+	    $data = array(
+	        'verifikasi_bukti_bayar' => $status_nya
+	   );
+	   //echo $id_pendaftar;
+	   //var_dump($this->input->post('id_pendaftar', true));exit();
+	    $simpan = $this->Model->update('id_pendaftar', $this->input->post('id_pendaftar', true), 'tb_pendaftar', $data);
+	    
+        if($simpan){
+			$return = array(
+				'status' => 'success',
+				'msg' => '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a><i class="fa fa-check" aria-hidden="true"></i> success !</div>'
+			);
+			echo json_encode($return);
+			exit();
+		}else{
+			$return = array(
+				'status' => 'failed',
+				'msg' => '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a><i class="fa fa-check" aria-hidden="true"></i> system error occurred !</div>'
+			);
+			echo json_encode($return);
+			exit();
+		}
+	}
 
 	public function send($email_to, $message, $subject){  
-   		$ci = get_instance();
+   		$ci =&  get_instance();
         $ci->load->library('email');
         $config['protocol'] = "smtp";
         $config['smtp_host'] = "ssl://smtp.gmail.com";

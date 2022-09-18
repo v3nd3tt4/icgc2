@@ -34,6 +34,17 @@
 						<?php }?>
 					</td>
 				</tr>
+				<?php //if($data->row()->bukti_bayar != '' || $data->row()->bukti_bayar !== Null){?>
+				<tr>
+					<td>Payment Status </td>
+					<td>: 
+						<?php if($data->row()->verifikasi_bukti_bayar == '' || $data->row()->verifikasi_bukti_bayar === Null){ echo 'Belum diverifikasi ';}else{
+						    echo $data->row()->verifikasi_bukti_bayar;
+						}?>
+						<button type="button" class="btn btn-success btn-verif-payment" id="<?=$data->row()->id_pendaftar?>">Verifikasi</button>
+					</td>
+				</tr>
+				<?php //}?>
 			</table>
 			<table class="table table-striped">
 				<thead> 
@@ -138,4 +149,38 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div id="modal_verifikasi_payment" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Verifikasi Pembayaran</h4>
+      </div>
+      <div class="modal-body">
+      	<form id="form_upload_verifikasi_payment">
+	        <div class="form-group">
+	        	<label>Status Pembayaran:</label>
+	        	<input type="hidden" id="id_pendaftar" name="id_pendaftar"/>
+	        	<select class="form-control" name="status_nya" id="status_nya" required>
+	        		<option value="">--Select--</option>
+	        		<option value="Valid">Valid</option>
+	        		<option value="Not Valid">Not Valid</option>
+	        	</select>
+	        </div>
+			
+	        <button type="submit" class="btn btn-primary"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+	    </form>
+	    <div class="notif_upload_verifikasi"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>  
 

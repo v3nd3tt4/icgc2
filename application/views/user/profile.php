@@ -42,6 +42,16 @@
 					<td>Status</td>
 					<td>: <?=$data->row()->status_verifikasi === NULL ? 'Not Verified' : $data->row()->status_verifikasi?> </td>
 				</tr>
+				<?php
+				if($data->row()->verifikasi_bukti_bayar == 'Valid'){
+				?>
+				<tr>
+					<td>LoA</td>
+					<td>: <a href="<?=base_url()?>user/loa/<?=$data->row()->id_pendaftar?>">Download</a> </td>
+				</tr>
+				<?php
+				}
+				?>
 			</table>
 		</div>
 	</div>
